@@ -27,18 +27,17 @@ const TrendProperties = (props: TrendPropertiesProps) => {
 		loading: getPropertiesLoading,
 		data: getPropertiesData,
 		error: getPropertiesError,
-		refetch: getPropertiesRefetch
+		refetch: getPropertiesRefetch,
 	} = useQuery(GET_PROPERTIES, {
-		fetchPolicy: "cache-and-network",
+		fetchPolicy: 'cache-and-network',
 		variables: { input: initialInput },
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: T) => {
 			setTrendProperties(data?.getProperties?.list);
-		}
-	})
+		},
+	});
 	/** HANDLERS **/
 
-	if (trendProperties) console.log('trendProperties:', trendProperties);
 	if (!trendProperties) return null;
 
 	if (device === 'mobile') {
